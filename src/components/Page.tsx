@@ -29,7 +29,7 @@ function Page() {
 
     return (
         <>
-            <Typography typography="h2" align="center">Controls</Typography>
+            <Typography typography="h4" sx={{ fontWeight: 700 }}>CONTROLS</Typography>
             {/* Interactive Section */}
             <Grid container spacing={2} sx={{ p: 5 }}>
                 <Grid item xs={6} >
@@ -95,7 +95,7 @@ function Page() {
             <Divider/>
 
             {/* Room Section */}
-            <Typography typography="h2" align="center" sx={{ mt: 3 }}>Floor Plan</Typography>
+            <Typography typography="h4" sx={{ m: 3, fontWeight: 700 }}>FLOOR PLAN</Typography>
 
             {!interiorDoor && !exteriorDoor ? (
                 <img src={roomAllClosed} width={"70%"} alt="Room"/>
