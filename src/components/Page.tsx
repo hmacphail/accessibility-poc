@@ -10,6 +10,10 @@ import interiorDoorClosed from "../images/interior_door_closed.png";
 import interiorDoorOpen from "../images/interior_door_open.png";
 import interiorSwitchOff from "../images/interior_switch_off.png";
 import interiorSwitchOn from "../images/interior_switch_on.png";
+import roomAllClosed from "../images/room_all_closed.png";
+import roomInteriorOpen from "../images/room_interior_open.png";
+import roomExteriorOpen from "../images/room_exterior_open.png";
+import roomAllOpen from "../images/room_all_open.png";
 
 const hoverStyle: SxProps = { ":hover": { cursor: "pointer" }};
 
@@ -25,38 +29,11 @@ function Page() {
 
     return (
         <>
-            <img src="" alt="Room"/>
-            <Divider/>
-            <Grid container spacing={2}>
-                <Grid item xs={6}>
-                    <Typography typography="h5">Interior View</Typography>
-                    <Stack direction="row" spacing={2}>
-                        <Stack spacing={1}>
-                            <img
-                                src={bulb ? bulbOn : bulbOff}
-                                width={50}
-                                alt="Interior Bulb"
-                            />
-                            <Link sx={hoverStyle}>
-                                <img
-                                    src={interiorSwitch ? interiorSwitchOn : interiorSwitchOff}
-                                    width={50}
-                                    alt="Interior Switch"
-                                    onClick={() => setInteriorSwitch(!interiorSwitch)}
-                                />
-                            </Link>
-                        </Stack>
-                        <Link sx={hoverStyle}>
-                            <img
-                                src={interiorDoor ? interiorDoorOpen : interiorDoorClosed}
-                                width={100}
-                                alt="Interior Door"
-                                onClick={() => setInteriorDoor(!interiorDoor)}
-                            />
-                        </Link>
-                    </Stack>
-                </Grid>
-                <Grid item xs={6}>
+            <Typography typography="h2" align="center">Controls</Typography>
+            {/* Interactive Section */}
+            <Grid container spacing={2} sx={{ p: 5 }}>
+                <Grid item xs={6} >
+                    {/* Exterior View */}
                     <Typography typography="h5">Exterior View</Typography>
                     <Stack direction="row" spacing={2}>
                         <Stack spacing={1}>
@@ -84,7 +61,52 @@ function Page() {
                         </Link>
                     </Stack>
                 </Grid>
+                <Grid item xs={6}>
+                    {/* Interior View */}
+                    <Typography typography="h5">Interior View</Typography>
+                    <Stack direction="row" spacing={2}>
+                        <Stack spacing={1}>
+                            <img
+                                src={bulb ? bulbOn : bulbOff}
+                                width={50}
+                                alt="Interior Bulb"
+                            />
+                            <Link sx={hoverStyle}>
+                                <img
+                                    src={interiorSwitch ? interiorSwitchOn : interiorSwitchOff}
+                                    width={50}
+                                    alt="Interior Switch"
+                                    onClick={() => setInteriorSwitch(!interiorSwitch)}
+                                />
+                            </Link>
+                        </Stack>
+                        <Link sx={hoverStyle}>
+                            <img
+                                src={interiorDoor ? interiorDoorOpen : interiorDoorClosed}
+                                width={100}
+                                alt="Interior Door"
+                                onClick={() => setInteriorDoor(!interiorDoor)}
+                            />
+                        </Link>
+                    </Stack>
+                </Grid>
             </Grid>
+
+            <Divider/>
+
+            {/* Room Section */}
+            <Typography typography="h2" align="center" sx={{ mt: 3 }}>Floor Plan</Typography>
+
+            {!interiorDoor && !exteriorDoor ? (
+                <img src={roomAllClosed} width={"70%"} alt="Room"/>
+            ) : (interiorDoor && exteriorDoor ? (
+                    <img src={roomAllOpen} width={"70%"} alt="Room"/>
+                ) : (interiorDoor
+                        ? <img src={roomInteriorOpen} width={"70%"} alt="Room"/>
+                        : <img src={roomExteriorOpen} width={"70%"} alt="Room"/>
+                )
+            )}
+
         </>
     );
 }
