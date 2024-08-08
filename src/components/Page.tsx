@@ -14,6 +14,8 @@ import roomAllClosed from "../images/room_all_closed.png";
 import roomInteriorOpen from "../images/room_interior_open.png";
 import roomExteriorOpen from "../images/room_exterior_open.png";
 import roomAllOpen from "../images/room_all_open.png";
+import signOccupied from "../images/sign_occupied.png";
+import signVacant from "../images/sign_vacant.png";
 
 const hoverStyle: SxProps = { ":hover": { cursor: "pointer" }};
 
@@ -97,16 +99,23 @@ function Page() {
             {/* Room Section */}
             <Typography typography="h4" sx={{ m: 3, fontWeight: 700 }}>FLOOR PLAN</Typography>
 
+            <span style={{ paddingRight: 25 }}>
+                { bulb ? (
+                    <img src={signOccupied} alt="SignOccupied"  />
+                ) : (
+                    <img src={signVacant} alt="SignVacant" />
+                ) }
+            </span>
+
             {!interiorDoor && !exteriorDoor ? (
                 <img src={roomAllClosed} width={"70%"} alt="Room"/>
             ) : (interiorDoor && exteriorDoor ? (
                     <img src={roomAllOpen} width={"70%"} alt="Room"/>
                 ) : (interiorDoor
                         ? <img src={roomInteriorOpen} width={"70%"} alt="Room"/>
-                        : <img src={roomExteriorOpen} width={"70%"} alt="Room"/>
+                 : <img src={roomExteriorOpen} width={"70%"} alt="Room"/>
                 )
             )}
-
         </>
     );
 }
