@@ -10,12 +10,11 @@ import interiorDoorClosed from "../images/interior_door_closed.png";
 import interiorDoorOpen from "../images/interior_door_open.png";
 import interiorSwitchOff from "../images/interior_switch_off.png";
 import interiorSwitchOn from "../images/interior_switch_on.png";
-import roomAllClosed from "../images/room_all_closed.png";
-import roomInteriorOpen from "../images/room_interior_open.png";
-import roomExteriorOpen from "../images/room_exterior_open.png";
-import roomAllOpen from "../images/room_all_open.png";
-import signOccupied from "../images/sign_occupied.png";
-import signVacant from "../images/sign_vacant.png";
+import roomAllClosedVacant from "../images/room_all_closed_vacant.png";
+import roomAllClosedOccupied from "../images/room_all_closed_occupied.png";
+import roomInteriorOpenOccupied from "../images/room_interior_open_occupied.png";
+import roomExteriorOpenOccupied from "../images/room_exterior_open_occupied.png";
+import roomAllOpenOccupied from "../images/room_all_open_occupied.png";
 
 const hoverStyle: SxProps = { ":hover": { cursor: "pointer" }};
 
@@ -99,22 +98,20 @@ function Page() {
             {/* Room Section */}
             <Typography typography="h4" sx={{ m: 3, fontWeight: 700 }}>FLOOR PLAN</Typography>
 
-            <span style={{ paddingRight: 25 }}>
-                { bulb ? (
-                    <img src={signOccupied} alt="SignOccupied"  />
-                ) : (
-                    <img src={signVacant} alt="SignVacant" />
-                ) }
-            </span>
-
-            {!interiorDoor && !exteriorDoor ? (
-                <img src={roomAllClosed} width={"70%"} alt="Room"/>
-            ) : (interiorDoor && exteriorDoor ? (
-                    <img src={roomAllOpen} width={"70%"} alt="Room"/>
-                ) : (interiorDoor
-                        ? <img src={roomInteriorOpen} width={"70%"} alt="Room"/>
-                 : <img src={roomExteriorOpen} width={"70%"} alt="Room"/>
-                )
+            {!interiorDoor && !exteriorDoor && !bulb && (
+                <img src={roomAllClosedVacant} width={"70%"} alt="Room"/>
+            )}
+            {!interiorDoor && !exteriorDoor && bulb && (
+                <img src={roomAllClosedOccupied} width={"70%"} alt="Room"/>
+            )}
+            {interiorDoor && exteriorDoor && (
+                <img src={roomAllOpenOccupied} width={"70%"} alt="Room"/>
+            )}
+            {interiorDoor && !exteriorDoor && (
+                <img src={roomInteriorOpenOccupied} width={"70%"} alt="Room"/>
+            )}
+            {!interiorDoor && exteriorDoor && (
+                <img src={roomExteriorOpenOccupied} width={"70%"} alt="Room"/>
             )}
         </>
     );
